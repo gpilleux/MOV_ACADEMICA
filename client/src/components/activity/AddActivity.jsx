@@ -137,6 +137,7 @@ class AddActivity extends Component {
             <option value="Servicios Centrales">Servicios Centrales</option>
             <option value="Federación de Estudiantes de la Universidad de Chile">Federaci&oacute;n de Estudiantes de la Universidad de Chile</option>
             <option value="Centro de Investigación Avanzada en Educacion">Centro de Investigaci&oacute;n Avanzada en Educaci&oacute;n</option>
+            <option value="Teatro Universidad de Chile">Teatro Universidad de Chile</option>
             <option value="otro">Otro</option>
           </select>
           <small className='form-text'>

@@ -21,6 +21,7 @@ import Activity from './components/activity/Activity';
 import AddActivity from './components/activity/AddActivity';
 //Visitor
 import CreateVisitor from './components/profile-forms/CreateVisitor';
+import DashboardMap from './components/dashboard/DashboardMap';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -79,6 +80,7 @@ const App = () => {
               <Route exact path='/activities' component={Activities} />
               <Route exact path='/create-activity' component={AddActivity} />
               <Route exact path='/create-visitor' component={CreateVisitor} />
+              <Route exact path='/map' component={DashboardMap} />
             </Switch>
           </section>
         </Fragment>
