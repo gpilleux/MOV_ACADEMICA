@@ -26,7 +26,12 @@ import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
+// Css
 import './App.css';
+
+// React Dates
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
