@@ -1,39 +1,31 @@
 import React, { Fragment, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { createProfile } from '../../actions/profile';
 
-const CreateVisitor = ({ createProfile, history }) => {
+const CreateVisitor = () => {
   const [formData, setFormData] = useState({
     name: '',
     gender: '',
     birthday: '',
     email: '',
-    nationality: '',
+    nationality: ''
   });
 
-  const {
-    name,
-    gender,
-    birthday,
-    email,
-    nationality,
-  } = formData;
+  const { name, gender, birthday, email, nationality } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
-    createProfile(formData, history);
+    //createProfile(formData, history);
   };
 
   return (
     <Fragment>
       <h1 className='large text-primary'>Crear Visitante</h1>
       <p className='lead'>
-        <i className='fas fa-user' /> Ingresa los datos para identificar al visitante
+        <i className='fas fa-user' /> Ingresa los datos para identificar al
+        visitante
       </p>
       <small>* = campo obligatorio</small>
       <form className='form' onSubmit={e => onSubmit(e)}>
@@ -45,9 +37,7 @@ const CreateVisitor = ({ createProfile, history }) => {
             value={name}
             onChange={e => onChange(e)}
           />
-          <small className='form-text'>
-            * Nombre o raz&oacute;n social
-          </small>
+          <small className='form-text'>* Nombre o raz&oacute;n social</small>
         </div>
         <div className='form-group'>
           <select name='gender' value={gender} onChange={e => onChange(e)}>
@@ -65,9 +55,7 @@ const CreateVisitor = ({ createProfile, history }) => {
             value={birthday}
             onChange={e => onChange(e)}
           />
-          <small className='form-text'>
-            * Fecha de nacimiento
-          </small>
+          <small className='form-text'>* Fecha de nacimiento</small>
         </div>
         <div className='form-group'>
           <input
@@ -89,9 +77,7 @@ const CreateVisitor = ({ createProfile, history }) => {
             value={nationality}
             onChange={e => onChange(e)}
           />
-          <small className='form-text'>
-            * Nacionalidad principal
-          </small>
+          <small className='form-text'>* Nacionalidad principal</small>
         </div>
 
         <input type='submit' className='btn btn-primary my-1' />
@@ -103,8 +89,10 @@ const CreateVisitor = ({ createProfile, history }) => {
   );
 };
 
+/*
 CreateVisitor.propTypes = {
   CreateVisitor: PropTypes.func.isRequired
 };
+*/
 
 export default withRouter(CreateVisitor);
