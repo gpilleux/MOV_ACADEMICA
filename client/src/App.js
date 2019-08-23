@@ -16,6 +16,9 @@ import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import PrivateRoute from './components/routing/PrivateRoute';
+//Activity
+import Activity from './components/activity/Activity';
+import AddActivity from './components/activity/AddActivity';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -55,11 +58,6 @@ const App = () => {
               />
               <PrivateRoute
                 exact
-                path='/edit-profile'
-                component={EditProfile}
-              />
-              <PrivateRoute
-                exact
                 path='/add-experience'
                 component={AddExperience}
               />
@@ -70,6 +68,8 @@ const App = () => {
               />
               <PrivateRoute exact path='/posts' component={Posts} />
               <PrivateRoute exact path='/posts/:id' component={Post} />
+
+              <Route exact path='/create-activity' component={AddActivity} />
             </Switch>
           </section>
         </Fragment>

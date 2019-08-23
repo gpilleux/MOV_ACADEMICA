@@ -24,7 +24,7 @@ const Dashboard = ({
     <Fragment>
       <h1 className='large text-primary'>Dashboard</h1>
       <p className='leader'>
-        <i className='fas fa-user' /> Welcome {user && user.name}
+        <i className='fas fa-user' /> Bienvenido {user && user.name}
       </p>
       {profile !== null ? (
         <Fragment>
@@ -42,7 +42,10 @@ const Dashboard = ({
         <Fragment>
           <p>You have not yet setupt a profile, please add some info</p>
           <Link to='/create-profile' className='btn btn-primary my-1'>
-            Create Profile
+            Ver Actividades
+          </Link>
+          <Link to='/create-activity' className='btn btn-primary my-1'>
+            Crear Actividad
           </Link>
         </Fragment>
       )}
