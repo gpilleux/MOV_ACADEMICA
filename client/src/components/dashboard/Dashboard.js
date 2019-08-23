@@ -44,6 +44,7 @@ const Dashboard = ({
           <Link to='/create-profile' className='btn btn-primary my-1'>
             Ver Actividades
           </Link>
+
           <Link to='/create-activity' className='btn btn-primary my-1'>
             Crear Actividad
           </Link>

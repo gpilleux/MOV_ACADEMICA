@@ -18,6 +18,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 //Activity
 import Activity from './components/activity/Activity';
 import AddActivity from './components/activity/AddActivity';
+
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
