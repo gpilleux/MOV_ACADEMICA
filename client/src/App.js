@@ -10,15 +10,17 @@ import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
-import CreateVisitor from './components/profile-forms/CreateVisitor'
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import PrivateRoute from './components/routing/PrivateRoute';
 //Activity
+import Activities from './components/activity/Activities';
 import Activity from './components/activity/Activity';
 import AddActivity from './components/activity/AddActivity';
+//Visitor
+import CreateVisitor from './components/profile-forms/CreateVisitor';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -50,7 +52,6 @@ const App = () => {
               <Route exact path='/login' component={Login} />
               <Route exact path='/profiles' component={Profiles} />
               <Route exact path='/profile/:id' component={Profile} />
-              <Route exact path='/createvisitor' component={CreateVisitor} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute
                 exact
@@ -70,7 +71,9 @@ const App = () => {
               <PrivateRoute exact path='/posts' component={Posts} />
               <PrivateRoute exact path='/posts/:id' component={Post} />
 
+              <Route exact path='/activities' component={Activities} />
               <Route exact path='/create-activity' component={AddActivity} />
+              <Route exact path='/create-visitor' component={CreateVisitor} />
             </Switch>
           </section>
         </Fragment>

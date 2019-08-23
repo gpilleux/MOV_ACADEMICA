@@ -40,13 +40,15 @@ const Dashboard = ({
         </Fragment>
       ) : (
         <Fragment>
-          <p>You have not yet setupt a profile, please add some info</p>
-          <Link to='/create-profile' className='btn btn-primary my-1'>
+          <Link to='/activities' className='btn btn-primary my-1'>
             Ver Actividades
           </Link>
 
           <Link to='/create-activity' className='btn btn-primary my-1'>
             Crear Actividad
+          </Link>
+          <Link to='/create-visitor' className='btn btn-primary my-1'>
+            Crear Visitante
           </Link>
         </Fragment>
       )}

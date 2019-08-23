@@ -25,10 +25,10 @@ const AddActivity = ({ history }) => {
     unidad,
     tipo_actividad,
     descripcion,
-    fecha_creada,
-    fecha_ultima_modificacion,
+    fecha_creada, //agregar campo hidden que modifique este valor
+    fecha_ultima_modificacion, //agregar campo hidden que modifique este valor
     nombre_actividad,
-    estado
+    estado //agregar campo hidden que modifique este valor
   } = formData;
 
   const onChange = e =>
@@ -85,11 +85,7 @@ const AddActivity = ({ history }) => {
         </div>
 
         <div className='form-group'>
-          <select
-            name='tipo_actividad'
-            value={tipo_actividad}
-            onChange={e => onChange(e)}
-          >
+          <select name='unidad' value={unidad} onChange={e => onChange(e)}>
             <option value='0'>* Seleccione la Unidad</option>
             <option value='Congreso'>Campus Andrés Bello</option>
             <option value='Conferencia'>Campus Beauchef</option>
@@ -150,4 +146,4 @@ const AddActivity = ({ history }) => {
   );
 };
 
-export default AddActivity;
+export default withRouter(AddActivity);
