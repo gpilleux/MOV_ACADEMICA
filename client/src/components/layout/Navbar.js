@@ -1,64 +1,74 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import {
+  Collapse,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink} from 'reactstrap';
+import {Navbar as BNavbar} from 'reactstrap';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
-  const authLinks = (
-    <ul>
-      <li>
-        <i class='fas fa-tasks' />
-        <Link to='/activities'>Actividades</Link>
-      </li>
+  const [toggle, setToggle] = useState(0);
 
-      <li>
-        <Link to='/dashboard'>
-          <i className='fas fa-user' />{' '}
-          <span className='hide-sm'>Visitantes</span>
-        </Link>
-      </li>
-      <li>
-        <a onClick={logout} href='#!'>
-          <i className='fas fa-sign-out-alt' />{' '}
-          <span className='hide-sm'>Logout</span>
-        </a>
-      </li>
-    </ul>
+  const authLinks = (
+    <Nav className="ml-auto" navbar>
+      <NavItem>
+        <NavLink to="/activities/" tag={Link}><i class='fas fa-tasks' />
+        Actividades</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink to="/dashboard/" tag={Link}><i className='fas fa-user' />{' '}
+        Visitantes</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink onClick={logout}><i className='fas fa-sign-out-alt' />{' '}
+          Salir</NavLink>
+      </NavItem>
+    </Nav>
   );
 
   const guestLinks = (
-    <ul>
-      <li>
-        <i class='fas fa-tasks' />
-        <Link to='/activities'>Actividades</Link>
-      </li>
-      <li>
-        <Link to='/dashboard'>
+    <Nav className="ml-auto" navbar>
+      <NavItem>
+        <NavLink to="/activities/" tag={Link}>
+          <i class='fas fa-tasks' />
+          Actividades</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink to="/dashboard/" tag={Link}>
           <i className='fas fa-user' />{' '}
-          <span className='hide-sm'>Visitantes</span>
-        </Link>
-      </li>
-      <li>
-        <Link to='/register'>Register</Link>
-      </li>
-      <li>
-        <Link to='/login'>Login</Link>
-      </li>
-    </ul>
+          Visitantes</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink to="/register" tag={Link}>Registro</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink to="/login" tag={Link}>Ingresar</NavLink>
+      </NavItem>
+    </Nav>
   );
 
   return (
-    <nav className='navbar bg-dark'>
-      <h1>
-        <Link to='/'>
-          <i className='fas fa-book' /> Movilidad Académica
-        </Link>
-      </h1>
-      {!loading && (
-        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-      )}
-    </nav>
+    <BNavbar color="dark" dark expand="md" fixed>
+    <NavbarBrand href="/">
+      <img src="/logo-universidad-de-chile.svg" alt="logo universidad de chile" />
+      <span style={{display: "block", margin: "1em 0"}}>
+      <i className='fas fa-book' />
+      Movilidad Académica
+      </span>
+    </NavbarBrand>
+    <NavbarToggler onClick={() => setToggle(!toggle)} />
+    <Collapse isOpen={toggle} navbar>
+        {!loading && (
+          isAuthenticated ? authLinks : guestLinks
+        )}
+    </Collapse>
+  </BNavbar>
   );
 };
 
