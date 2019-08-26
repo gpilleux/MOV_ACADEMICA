@@ -50,6 +50,9 @@ const Dashboard = ({
           <Link to='/create-visitor' className='btn btn-primary my-1'>
             Crear Visitante
           </Link>
+          <Link to='/all-visitors' className='btn btn-primary my-1'>
+            Todos los Visitantes
+          </Link>
         </Fragment>
       )}
     </Fragment>
