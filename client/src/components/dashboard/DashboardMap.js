@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import * as am4core from "@amcharts/amcharts4/core";
 // import * as am4charts from "@amcharts/amcharts4/charts";
@@ -11,8 +11,7 @@ am4core.useTheme(am4themes_animated);
 
 class DashboardMap extends Component {
   componentDidMount() {
-
-    let map = am4core.create("chartdiv", am4maps.MapChart);    
+    let map = am4core.create("chartdiv", am4maps.MapChart);
     map.geodata = am4geodata_worldLow;
     map.projection = new am4maps.projections.Miller();
 
@@ -61,9 +60,7 @@ class DashboardMap extends Component {
   }
 
   render() {
-    return (
-      <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
-    );
+    return <div id="chartdiv" style={{ width: "100%", height: "500px" }} />;
   }
 }
 
