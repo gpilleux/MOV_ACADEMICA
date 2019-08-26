@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const Activities = () => {
   return (
@@ -19,6 +20,7 @@ const Activities = () => {
               <th>Creada</th>
               <th>Modificada</th>
               <th>Estado</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +34,7 @@ const Activities = () => {
               <td>16/07/2019</td>
               <td>10/08/2019</td>
               <td>Programada</td>
-              <td>Agregar Visitante</td>
+              <td><Link to="/add-visitor">Agregar Visitante</Link></td>
             </tr>
             <tr>
               <td>
@@ -45,7 +47,7 @@ const Activities = () => {
               <td>20/07/2019</td>
               <td>23/08/2019</td>
               <td>Efectuada</td>
-              <td />
+              <td><Link to="/add-visitor">Agregar Visitante</Link></td>
             </tr>
 
             <tr>
@@ -56,7 +58,7 @@ const Activities = () => {
               <td>05/08/2019</td>
               <td>23/08/2019</td>
               <td>Cancelada</td>
-              <td />
+              <td><Link to="/add-visitor">Agregar Visitante</Link></td>
             </tr>
           </tbody>
         </Table>
