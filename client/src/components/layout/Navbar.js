@@ -22,11 +22,11 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         Actividades</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/dashboard/" tag={Link}><i className='fas fa-user' />{' '}
+        <NavLink to="/dashboard/" tag={Link}><i className='fas fa-user' />
         Visitantes</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink onClick={logout}><i className='fas fa-sign-out-alt' />{' '}
+        <NavLink onClick={logout}><i className='fas fa-sign-out-alt' />
           Salir</NavLink>
       </NavItem>
     </Nav>
@@ -41,7 +41,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </NavItem>
       <NavItem>
         <NavLink to="/dashboard/" tag={Link}>
-          <i className='fas fa-user' />{' '}
+          <i className='fas fa-user' />
           Visitantes</NavLink>
       </NavItem>
       <NavItem>

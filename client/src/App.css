@@ -342,6 +342,10 @@ button {
   margin-top: 5em;
 }
 
+.navbar .fas{
+  margin-right: 0.5em;
+}
+
 /* Landing Page */
 .landing {
   position: relative;
