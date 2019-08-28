@@ -73,7 +73,7 @@ class AddActivity extends Component {
             <option value='Distinción'>Premiación</option>
             <option value='Inauguración'>Inauguración</option>
             <option value='Encuentro'>Encuentro</option>
-            <option value='Otro'>Otro</option>
+            <option value='Otro'>Otro</option> 
           </select>
           <small className='form-text'>
             * Seleccione el tipo de actividad que más se asocia a la actividadad
