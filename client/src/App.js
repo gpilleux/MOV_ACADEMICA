@@ -7,7 +7,6 @@ import Login from "./components/auth/Login";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile-forms/CreateProfile";
-import EditProfile from "./components/profile-forms/EditProfile";
 import AddExperience from "./components/profile-forms/AddExperience";
 import AddEducation from "./components/profile-forms/AddEducation";
 import Profiles from "./components/profiles/Profiles";
@@ -18,13 +17,12 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 //import Visualizaciones from "./components/dashboard/Visualizaciones";
 //Activity
 import Activities from './components/activity/Activities';
-import Activity from './components/activity/Activity';
 import ActivityDetail from './components/activity/ActivityDetail';
 import AddActivity from './components/activity/AddActivity';
 //Visitor
 import Visitor from './components/visitor/Visitor';
 import AllVisitors from './components/visitor/AllVisitors';
-import CreateVisitor from './components/profile-forms/CreateVisitor';
+import CreateVisitor from './components/visitor/CreateVisitor';
 import DashboardMap from './components/dashboard/DashboardMap';
 import AddVisit from "./components/visitor/AddVisit";
 
