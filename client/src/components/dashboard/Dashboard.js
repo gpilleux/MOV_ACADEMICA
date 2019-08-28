@@ -37,6 +37,20 @@ const Dashboard = ({
               <i className='fas fa-user-minus' /> Delete My Account
             </button>
           </div>
+
+          <Link to='/activities' className='btn btn-primary my-1'>
+            Ver Actividades
+          </Link>
+
+          <Link to='/create-activity' className='btn btn-primary my-1'>
+            Crear Actividad
+          </Link>
+          <Link to='/create-visitor' className='btn btn-primary my-1'>
+            Crear Visitante
+          </Link>
+          <Link to='/all-visitors' className='btn btn-primary my-1'>
+            Todos los Visitantes
+          </Link>
         </Fragment>
       ) : (
         <Fragment>

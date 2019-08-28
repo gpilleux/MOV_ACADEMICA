@@ -19,6 +19,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <Nav className='ml-auto' navbar>
       <NavItem>
+        <NavLink to='/loqllevamos' tag={Link}>
+          <i class='fas fa-tasks' />
+          Llevamos
+        </NavLink>
+      </NavItem>
+      <NavItem>
         <NavLink to='/activities/' tag={Link}>
           <i class='fas fa-tasks' />
           Actividades
