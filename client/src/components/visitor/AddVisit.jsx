@@ -65,10 +65,11 @@ const Test2 = (props) =>
           <Input type="select" name="select" id="exampleSelect">
             <option>Rol de la visita</option>
             <option>Acad&eacute;mico</option>
-            <option>Autoridad</option>
+            <option>Autoridad p&uacute;blica</option>
             <option>Directivo</option>
             <option>Estudiante</option>
             <option>Profesional</option>
+            <option>Int&eacute;rprete</option>
             <option>Otro</option>
           </Input>
           <FormText color="muted">
