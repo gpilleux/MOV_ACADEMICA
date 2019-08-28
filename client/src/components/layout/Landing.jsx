@@ -6,9 +6,6 @@ import Activities from "../activity/Activities";
 import { Table, Button } from "reactstrap";
 
 const Landing = ({ isAuthenticated }) => {
-  if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
-  }
   return (
     <section className="container">
       <Activities />;
