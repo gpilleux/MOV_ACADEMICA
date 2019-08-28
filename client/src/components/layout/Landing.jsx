@@ -1,16 +1,13 @@
-import React, { Fragment } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import Activities from "../activity/Activities";
-import { Table, Button } from "reactstrap";
+import React, { Fragment } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Activities from '../activity/Activities';
+import { Table, Button } from 'reactstrap';
 
 const Landing = ({ isAuthenticated }) => {
-  if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
-  }
   return (
-    <section className="container">
+    <section className='main-container'>
       <Activities />;
     </section>
   );
