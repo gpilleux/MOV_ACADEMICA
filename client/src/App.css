@@ -35,7 +35,7 @@ img {
 }
 
 /* Utilities */
-.container {
+.main-container {
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
@@ -504,9 +504,13 @@ button {
   margin-bottom: 0.5rem;
 }
 
+.stepContainer{
+  width: 100%;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
-  .container {
+  .main-container {
     margin-top: 8rem;
   }
 

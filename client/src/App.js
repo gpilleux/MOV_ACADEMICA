@@ -15,14 +15,15 @@ import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import Visualizaciones from "./components/dashboard/Visualizaciones";
+//import Visualizaciones from "./components/dashboard/Visualizaciones";
 //Activity
 import Activities from "./components/activity/Activities";
 import Activity from "./components/activity/Activity";
 import AddActivity from "./components/activity/AddActivity";
 //Visitor
-import CreateVisitor from "./components/profile-forms/CreateVisitor";
+import CreateVisitor from "./components/visitor/CreateVisitor";
 import DashboardMap from "./components/dashboard/DashboardMap";
+import AddVisit from "./components/visitor/AddVisit";
 
 // Redux
 import { Provider } from "react-redux";
@@ -52,7 +53,7 @@ const App = () => {
         <Fragment>
           <Navbar />
           <Route exact path="/" component={Landing} />
-          <section className="container">
+          <section className="main-container">
             <Alert />
             <Switch>
               <Route exact path="/register" component={Register} />
@@ -81,12 +82,13 @@ const App = () => {
               <Route exact path="/activities" component={Activities} />
               <Route exact path="/create-activity" component={AddActivity} />
               <Route exact path="/create-visitor" component={CreateVisitor} />
+              <Route exact path="/add-visitor" component={AddVisit} />
               <Route exact path="/map" component={DashboardMap} />
-              <Route
+              {/* <Route
                 exact
                 path="/visualizaciones"
                 component={Visualizaciones}
-              />
+              /> */}
             </Switch>
           </section>
         </Fragment>
