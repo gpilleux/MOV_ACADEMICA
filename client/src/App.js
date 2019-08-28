@@ -17,26 +17,29 @@ import Post from "./components/post/Post";
 import PrivateRoute from "./components/routing/PrivateRoute";
 //import Visualizaciones from "./components/dashboard/Visualizaciones";
 //Activity
-import Activities from "./components/activity/Activities";
-import Activity from "./components/activity/Activity";
-import AddActivity from "./components/activity/AddActivity";
+import Activities from './components/activity/Activities';
+import Activity from './components/activity/Activity';
+import ActivityDetail from './components/activity/ActivityDetail';
+import AddActivity from './components/activity/AddActivity';
 //Visitor
-import CreateVisitor from "./components/visitor/CreateVisitor";
-import DashboardMap from "./components/dashboard/DashboardMap";
+import Visitor from './components/visitor/Visitor';
+import AllVisitors from './components/visitor/AllVisitors';
+import CreateVisitor from './components/profile-forms/CreateVisitor';
+import DashboardMap from './components/dashboard/DashboardMap';
 import AddVisit from "./components/visitor/AddVisit";
 
 // Redux
-import { Provider } from "react-redux";
-import store from "./store";
-import { loadUser } from "./actions/auth";
-import setAuthToken from "./utils/setAuthToken";
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 // Css
-import "./App.css";
+import './App.css';
 
 // React Dates
-import "react-dates/initialize";
-import "react-dates/lib/css/_datepicker.css";
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -56,39 +59,42 @@ const App = () => {
           <section className="main-container">
             <Alert />
             <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/:id" component={Profile} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/profiles' component={Profiles} />
+              <Route exact path='/profile/:id' component={Profile} />
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute
                 exact
-                path="/create-profile"
+                path='/create-profile'
                 component={CreateProfile}
               />
               <PrivateRoute
                 exact
-                path="/add-experience"
+                path='/add-experience'
                 component={AddExperience}
               />
               <PrivateRoute
                 exact
-                path="/add-education"
+                path='/add-education'
                 component={AddEducation}
               />
-              <PrivateRoute exact path="/posts" component={Posts} />
-              <PrivateRoute exact path="/posts/:id" component={Post} />
+              <PrivateRoute exact path='/posts' component={Posts} />
+              <PrivateRoute exact path='/posts/:id' component={Post} />
 
               <Route exact path="/activities" component={Activities} />
-              <Route exact path="/create-activity" component={AddActivity} />
-              <Route exact path="/create-visitor" component={CreateVisitor} />
+              <Route exact path='/activity-detail' component={ActivityDetail} />
+              <Route exact path='/create-activity' component={AddActivity} />
+              <Route exact path='/create-visitor' component={CreateVisitor} />
               <Route exact path="/add-visitor" component={AddVisit} />
-              <Route exact path="/map" component={DashboardMap} />
+              <Route exact path='/map' component={DashboardMap} />
               {/* <Route
                 exact
                 path="/visualizaciones"
                 component={Visualizaciones}
               /> */}
+              <Route exact path='/visitor' component={Visitor} />
+              <Route exact path='/all-visitors' component={AllVisitors} />
             </Switch>
           </section>
         </Fragment>
