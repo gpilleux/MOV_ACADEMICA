@@ -5,7 +5,7 @@ import {
   UPDATE_VISITOR,
   ADD_VISITOR,
   DELETE_VISITOR,
-} from './types';
+} from '../actions/types';
 
 const initialState = {
   visitors: [],

@@ -6,10 +6,10 @@ import {
   UPDATE_ACTIVITY,
   DELETE_ACTIVITY,
   GET_VISITORS_IN_ACTIVITY
-} from './types';
+} from '../actions/types';
 
 const initialState = {
-  activites: [],
+  activities: [],
   activity: null,
   visitors: [],
   loading: true,
@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
     case GET_ACTIVITIES:
       return {
         ...state,
-        activites: payload,
+        activities: payload,
         loading: false
       };
     case GET_ACTIVITY:
@@ -35,14 +35,14 @@ export default function(state = initialState, action) {
     case ADD_ACTIVITY:
       return {
         ...state,
-        activites: [payload, ...state.activities],
+        activities: [payload, ...state.activities],
         loading: false
       };
     // funciona??? TODO Probar
     case UPDATE_ACTIVITY:
       return {
         ...state,
-        activites: state.activites.map(activity =>
+        activities: state.activities.map(activity =>
           activity._id === payload.id ? payload.activity : activity
         ),
         loading: false
