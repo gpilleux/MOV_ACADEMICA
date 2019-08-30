@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const ActivityDetail = () => {
   const nombre = 'Desafíos a partir de la crisis sanitaria en Osorno';
@@ -13,6 +14,9 @@ const ActivityDetail = () => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{nombre}</title>
+      </Helmet>
       <div class='row'>
         <div class='col col-8'>
           <h1 className='large text-primary'>{nombre}</h1>

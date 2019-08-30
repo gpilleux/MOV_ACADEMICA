@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Table, Button } from 'reactstrap';
+import { Helmet } from 'react-helmet';
 
 const Visitor = () => {
   const name = 'Jorge Pérez';
@@ -16,6 +17,9 @@ const Visitor = () => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{name}</title>
+      </Helmet>
       <Link to='/all-visitors' className='btn btn-light'>
         Volver a Visitantes
       </Link>

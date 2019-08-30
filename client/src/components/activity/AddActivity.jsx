@@ -6,6 +6,7 @@ import {DateRangePicker} from 'react-dates';
 import moment from 'moment';
 import esLocale from 'moment/locale/es'
 import 'react-dates/lib/css/_datepicker.css';
+import { Helmet } from 'react-helmet';
 
 moment.locale('es', esLocale)
 
@@ -49,6 +50,9 @@ class AddActivity extends Component {
 
   render(){
     return (<Fragment>
+      <Helmet>
+        <title>Agregar Actividad</title>
+      </Helmet>
       <h1 className='large text-primary'>Crea una Actividad</h1>
       <p className='lead'>
         <i className='fas fa-user' /> Formulario para crear una actividad.

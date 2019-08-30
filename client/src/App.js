@@ -61,7 +61,6 @@ const App = () => {
               <Route exact path='/login' component={Login} />
               <Route exact path='/profiles' component={Profiles} />
               <Route exact path='/profile/:id' component={Profile} />
-              <PrivateRoute exact path='/loqllevamos' component={Dashboard} />
               <PrivateRoute
                 exact
                 path='/create-profile'
@@ -80,6 +79,7 @@ const App = () => {
               <PrivateRoute exact path='/posts' component={Posts} />
               <PrivateRoute exact path='/posts/:id' component={Post} />
 
+              <Route exact path='/loqllevamos' component={Dashboard} />
               <Route exact path='/activities' component={Activities} />
               <Route exact path='/activity-detail' component={ActivityDetail} />
               <Route exact path='/create-activity' component={AddActivity} />
@@ -93,6 +93,7 @@ const App = () => {
               /> */}
               <Route exact path='/visitor' component={Visitor} />
               <Route exact path='/all-visitors' component={AllVisitors} />
+              <Route component={NotFound} />
             </Switch>
           </section>
         </Fragment>
@@ -100,5 +101,9 @@ const App = () => {
     </Provider>
   );
 };
+
+const NotFound = (props) => <div className="container">
+  <h1 className="large text-primary">La ruta {props.location.pathname} no existe</h1>
+</div>
 
 export default App;
