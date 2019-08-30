@@ -4,7 +4,7 @@ import {
   GET_VISITOR,
   UPDATE_VISITOR,
   ADD_VISITOR,
-  DELETE_VISITOR,
+  DELETE_VISITOR
 } from '../actions/types';
 
 const initialState = {
@@ -31,27 +31,27 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_VISITORS:
-        return {
-          ...state,
-          visitors: [...payload],
-          loading: false
-        };
+      return {
+        ...state,
+        visitors: [...payload],
+        loading: false
+      };
     case UPDATE_VISITOR:
       return {
         ...state,
-        visitors: state.visitors.map(visitor => visitor._id == payload.id ? payload : visitor),
+        visitors: state.visitors.map(visitor =>
+          visitor._id === payload.id ? payload : visitor
+        ),
         loading: false
       };
     case DELETE_VISITOR:
       return {
         ...state,
-        visitors: state.visitors.filter(
-          visitor => visitor._id !== payload
-        ),
+        visitors: state.visitors.filter(visitor => visitor._id !== payload),
         loading: false
       };
     case VISITOR_ERROR:
-      return { 
+      return {
         ...state,
         error: payload,
         loading: false
