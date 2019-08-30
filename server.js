@@ -18,7 +18,7 @@ app.use('/api/posts', require('./routes/api/posts'));
 // Movilidad Academica Routes
 app.use('/api/activity', require('./routes/api/activity'));
 app.use('/api/visitor', require('./routes/api/visitor'));
-//app.use('/api/visit', require('./routes/api/visit'));
+app.use('/api/visit', require('./routes/api/visit'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

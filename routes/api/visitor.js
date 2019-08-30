@@ -96,4 +96,19 @@ router.get('/:visitor_id', async (req, res) => {
   }
 });
 
+// @route   DELETE api/visitor/:visitor_id
+// @desc    Delete Activity by ID
+// @access  Private
+router.delete('/:visitor_id', async (req, res) => {
+  try {
+    // Delete Visitor
+    await Visitor.findOneAndRemove({ _id: req.params.visitor_id });
+
+    res.json({ msg: 'Visitante Eliminado' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
