@@ -32,8 +32,8 @@ export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 
-// Tipos App Movilidad
-// Actividades
+// Types App Movilidad
+// Activities
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const GET_ACTIVITY = 'GET_ACTIVITY';
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';
@@ -42,7 +42,7 @@ export const DELETE_ACTIVITY = 'DELETE_ACTIVITY';
 export const ACTIVITY_ERROR = 'ACTIVITY_ERROR';
 export const GET_VISITORS_IN_ACTIVITY = 'GET_VISITORS_IN_ACTIVITY';
 
-// Visitantes
+// Visitors
 export const GET_VISITORS = 'GET_VISITORS';
 export const GET_VISITOR = 'GET_VISITOR';
 export const ADD_VISITOR = 'ADD_VISITOR';
@@ -50,7 +50,7 @@ export const UPDATE_VISITOR = 'UPDATE_VISITOR';
 export const DELETE_VISITOR = 'DELETE_VISITOR';
 export const VISITOR_ERROR = 'VISITOR_ERROR';
 
-// Visita
+// Visits
 export const ADD_VISIT = 'ADD_VISIT';
 export const GET_VISIT = 'GET_VISIT';
 export const UPDATE_VISIT = 'UPDATE_VISIT';
