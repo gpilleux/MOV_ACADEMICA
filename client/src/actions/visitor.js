@@ -26,9 +26,9 @@ export const getVisitors = () => async dispatch => {
   }
 }
 
-export const getVisitor = (id) => async dispatch => {
+export const getVisitor = visitor_id => async dispatch => {
   try {
-    const res = await axios.get(`api/visitor/${id}`);
+    const res = await axios.get(`api/visitor/${visitor_id}`);
 
     dispatch({
       type: GET_VISITOR,
@@ -71,7 +71,7 @@ export const addVisitor = (formData) => async dispatch => {
   }
 }
 
-export const updateVisitor = (formData,id) => async dispatch => {
+export const updateVisitor = (formData,visitor_id) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export const updateVisitor = (formData,id) => async dispatch => {
   };
 
   try {
-    const res = await axios.put(`api/visitor/${id}`, formData, config);
+    const res = await axios.put(`api/visitor/${visitor_id}`, formData, config);
 
     dispatch({
       type: UPDATE_VISITOR,
@@ -100,9 +100,9 @@ export const updateVisitor = (formData,id) => async dispatch => {
   }
 }
 
-export const deleteVisitor = (id) => async dispatch => {
+export const deleteVisitor = (visitor_id) => async dispatch => {
   try {
-    const res = await axios.delete(`api/visitor/${id}`);
+    const res = await axios.delete(`api/visitor/${visitor_id}`);
 
     dispatch({
       type: DELETE_VISITOR,
