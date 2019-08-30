@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getActivities } from '../../actions/activity'
 import {Helmet} from 'react-helmet';
+import Spinner from '../layout/Spinner';
 
 const dummyData = <Fragment>
   <tr>
@@ -57,15 +58,21 @@ const dummyData = <Fragment>
 </tr>
 </Fragment>
 
-const Activities = (props) => {
-
-  const {activity} = props;
+const Activities = ({
+  getActivities,
+  activityProp: { activities, loading},
+}) => {
+  useEffect(() => {
+    getActivities();
+  }, [getActivities]);
 
   return (
     <Fragment>
       <Helmet>
         <title>Actividades</title>
       </Helmet>
+      {loading ? <Spinner /> : 
+      <Fragment>
       <div class='row'>
         <div class='col col-8'>
           <h1 className='large text-primary'>Actividades</h1>
@@ -95,7 +102,7 @@ const Activities = (props) => {
             </tr>
           </thead>
           <tbody>
-            {activity.activities.length > 0 ? activity.activities.map( el => 
+            {activities.length > 0 ? activities.map( el => 
               <tr>
                 <td>
                   <Link to='/activity-detail/'>
@@ -116,6 +123,8 @@ const Activities = (props) => {
           </tbody>
         </Table>
       </div>
+      </Fragment>
+      }
     </Fragment>
   );
 };
@@ -126,7 +135,7 @@ Activities.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  activity: state.activity
+  activityProp: state.activity
 })
 
 export default connect(
