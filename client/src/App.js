@@ -93,6 +93,7 @@ const App = () => {
               /> */}
               <Route exact path='/visitor' component={Visitor} />
               <Route exact path='/all-visitors' component={AllVisitors} />
+              <Route component={NotFound} />
             </Switch>
           </section>
         </Fragment>
@@ -100,5 +101,9 @@ const App = () => {
     </Provider>
   );
 };
+
+const NotFound = (props) => <div className="container">
+  <h1 className="large text-primary">La ruta {props.location.pathname} no existe</h1>
+</div>
 
 export default App;

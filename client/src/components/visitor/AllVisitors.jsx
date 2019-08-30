@@ -5,10 +5,14 @@ import { connect } from 'react-redux';
 
 import { Table, Button } from 'reactstrap';
 import SearchField from 'react-search-field';
+import { Helmet } from 'react-helmet';
 
 const AllVisitors = () => {
   return (
     <Fragment>
+      <Helmet>
+        <title>Listado de Visitantes</title>
+      </Helmet>
       <div class='row'>
         <div class='col col-8'>
           <h1 className='large text-primary'>Listado de Visitantes</h1>

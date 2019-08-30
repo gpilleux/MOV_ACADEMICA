@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getActivities } from '../../actions/activity'
+import {Helmet} from 'react-helmet';
 
 const dummyData = <Fragment>
   <tr>
@@ -62,6 +63,9 @@ const Activities = (props) => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>Actividades</title>
+      </Helmet>
       <div class='row'>
         <div class='col col-8'>
           <h1 className='large text-primary'>Actividades</h1>
