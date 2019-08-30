@@ -1,4 +1,6 @@
 import axios from 'axios';
+import setAlert from './alert';
+
 import {
   ADD_VISITOR_TO_VISIT,
   DELETE_VISITOR_IN_VISIT,
@@ -21,6 +23,13 @@ export const addVisit = (formData) => async dispatch => {
       payload: res.data
     })
   } catch (err) {
+
+    const errors = err.response.data.errors;
+
+    if(error) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+
     dispatch({
       type: VISIT_ERROR,
       payload: {msg: err.response.statusText, status: err.response.status}

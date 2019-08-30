@@ -1,4 +1,6 @@
 import axios from 'axios';
+import setAlert from './alert';
+
 import {
   VISITOR_ERROR,
   GET_VISITORS,
@@ -7,7 +9,6 @@ import {
   ADD_VISITOR,
   DELETE_VISITOR,
 } from './types';
-import setAlert from './alert';
 
 export const getVisitors = () => async dispatch => {
   try {
