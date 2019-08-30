@@ -1,12 +1,13 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
-//import PropTypes from 'prop-types';
-//import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {DateRangePicker} from 'react-dates';
 import moment from 'moment';
 import esLocale from 'moment/locale/es'
 import 'react-dates/lib/css/_datepicker.css';
 import { Helmet } from 'react-helmet';
+import { addActivity } from '../../actions/activity';
 
 moment.locale('es', esLocale)
 
@@ -15,16 +16,15 @@ class AddActivity extends Component {
   constructor(props){
     super(props)
     this.state = {
-      unidad: '',
-      tipo_actividad: '',
-      descripcion: '',
-      fecha_creada: moment(),
-      fecha_ultima_modificacion: moment(),
-      nombre_actividad: '',
-      estado: '',
-      facultad: '',
-      fecha_inicio: null,
-      fecha_termino: null,
+      activity_type: '',
+      description: '',
+      date_created: moment(),
+      last_modified: moment(),
+      name: '',
+      state: 'Programada',
+      unit: '',
+      date_start: null,
+      date_end: null,
     }
     this.changeFocus = this.changeFocus.bind(this);
   }
@@ -37,11 +37,12 @@ class AddActivity extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    //createProfile(formData, history);
+    // addActivity(formData)
+    this.props.addActivity(this.state);
   }
 
   changeDates = ({ startDate, endDate }) => {
-    this.setState({ fecha_inicio: startDate, fecha_termino: endDate })
+    this.setState({ date_start: startDate, date_end: endDate })
   }
 
   changeFocus(focusedInput){
@@ -49,7 +50,8 @@ class AddActivity extends Component {
   }
 
   render(){
-    return (<Fragment>
+    return (
+    <Fragment>
       <Helmet>
         <title>Agregar Actividad</title>
       </Helmet>
@@ -61,7 +63,7 @@ class AddActivity extends Component {
       <form className='form' onSubmit={e => this.onSubmit(e)}>
         <div className='form-group'>
           <select
-            name='tipo_actividad'
+            name='activity_type'
             value={this.state.tipo_actividad}
             onChange={e => this.onChange(e)}
           >
@@ -88,7 +90,7 @@ class AddActivity extends Component {
           <input
             type='text'
             placeholder='Nombre de la Actividad'
-            name='nombre_actividad'
+            name='name'
             value={this.state.nombre_actividad}
             onChange={e => this.onChange(e)}
           />
@@ -96,39 +98,19 @@ class AddActivity extends Component {
             * Escriba un nombre representativo de la actividad.
           </small>
         </div>
-
         <div className='form-group'>
           <select
-            name='unidad'
-            value={this.state.unidad}
-            onChange={e => this.onChange(e)}
-          >
-            <option value='0'>* Seleccione la Unidad</option>
-            <option value='Campus Andres Bello'>Campus Andrés Bello</option>
-            <option value='Campus Beauchef'>Campus Beauchef</option>
-            <option value='Campus Dra. Eloisa Diaz'>Campus Dra. Elo&iacute;sa D&iacute;az</option>
-            <option value='Campus JGM'>Campus Juan G&oacute;mez Millas</option>
-            <option value='Casa Central'>Casa Central</option>
-            <option value='Campus Sur'>Campus Sur</option>
-            <option value='Otro'>Otro</option>
-          </select>
-          <small className='form-text'>
-            * Seleccione la Unidad en donde se realizará la actividad.
-          </small>
-        </div>
-        <div className='form-group'>
-          <select
-            name='facultad'
+            name='unit'
             value={this.state.facultad}
             onChange={e => this.onChange(e)}
           >
             <option value='0'>* Seleccione el Lugar</option>
-            <option value='Campus Andres Bello'>Facultad de Arquitectura y Urbanismo</option>
-            <option value='Campus Beauchef'>Facultad de Artes</option>
-            <option value='Campus Dra. Eloisa Diaz'>Facultad de Ciencias Agron&oacute;micas</option>
-            <option value='Campus JGM'>Facultad de Ciencias</option>
-            <option value='Casa Central'>Facultad de Ciencias F&iacute;sicas y Matem&aacute;ticas</option>
-            <option value='Campus Sur'>Facultad de Ciencias Forestales y de la Conservaci&oacute;n de la Naturaleza</option>
+            <option value='Facultad de Arquitectura y Urbanismo'>Facultad de Arquitectura y Urbanismo</option>
+            <option value='Facultad de Artes'>Facultad de Artes</option>
+            <option value='Facultad de Ciencias Agronomicas'>Facultad de Ciencias Agron&oacute;micas</option>
+            <option value='Facultad de Ciencias'>Facultad de Ciencias</option>
+            <option value='Facultad de Ciencias Fisicas y Matematicas'>Facultad de Ciencias F&iacute;sicas y Matem&aacute;ticas</option>
+            <option value='Facultad de Ciencias Forestales y de la Conservacion de la Naturaleza'>Facultad de Ciencias Forestales y de la Conservaci&oacute;n de la Naturaleza</option>
             <option value='Facultad de Ciencias Quimicas y Farmaceuticas'>Facultad de Ciencias Qu&iacute;micas y Farmac&eacute;uticas</option>
             <option value='Facultad de Ciencias Sociales'>Facultad de Ciencias Sociales</option>
             <option value='Facultad de Ciencias Veterinarias y Pecuarias'>Facultad de Ciencias Veterinarias y Pecuarias</option>
@@ -155,9 +137,9 @@ class AddActivity extends Component {
 
         <div className='form-group'>
           <DateRangePicker
-            startDate={this.state.fecha_inicio} // momentPropTypes.momentObj or null,
+            startDate={this.state.date_start} // momentPropTypes.momentObj or null,
             startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-            endDate={this.state.fecha_termino} // momentPropTypes.momentObj or null,
+            endDate={this.state.date_end} // momentPropTypes.momentObj or null,
             endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
             onDatesChange={this.changeDates} // PropTypes.func.isRequired,
             focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
@@ -177,7 +159,7 @@ class AddActivity extends Component {
         <div className='form-group'>
           <textarea
             placeholder='Descripción de la Actividad'
-            name='descripcion'
+            name='description'
             value={this.state.descripcion}
             onChange={e => this.onChange(e)}
           />
@@ -199,4 +181,11 @@ class AddActivity extends Component {
   }
 }
 
-export default AddActivity;
+AddActivity.propTypes = {
+  addActivity: PropTypes.func.isRequired
+}
+
+export default connect(
+  null,
+  { addActivity }
+)(AddActivity);
