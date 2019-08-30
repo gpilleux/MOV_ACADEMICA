@@ -26,7 +26,6 @@ export default function(state = initialState, action) {
     case GET_VISIT:
       return {
         ...state,
-        visits: [payload, ...state.visits],
         visit: payload,
         loading: false
       };
