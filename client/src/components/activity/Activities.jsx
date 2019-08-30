@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getActivities } from '../../actions/activity'
 import {Helmet} from 'react-helmet';
 import Spinner from '../layout/Spinner';
+import moment from 'moment';
 
 const dummyData = <Fragment>
   <tr>
@@ -105,15 +106,15 @@ const Activities = ({
             {activities.length > 0 ? activities.map( el => 
               <tr>
                 <td>
-                  <Link to='/activity-detail/'>
+                  <Link to={`/activity-detail/${el._id}`}>
                     {el.name}
                   </Link>
                 </td>
-                <td>{el.date_start}</td>
-                <td>{el.date_end}</td>
+                <td>{ moment(el.date_start).format("DD/MM/YYYY")}</td>
+                <td>{ moment(el.date_end).format("DD/MM/YYYY")}</td>
                 <td>{el.unit}</td>
-                <td>{el.date_created}</td>
-                <td>{el.date_modified}</td>
+                <td>{ moment(el.date_created).format("DD/MM/YYYY")}</td>
+                <td>{ moment(el.date_modified).format("DD/MM/YYYY")}</td>
                 <td>{el.state}</td>
                 <td>
                   <Link to='/add-visitor'>Agregar Visitante</Link>

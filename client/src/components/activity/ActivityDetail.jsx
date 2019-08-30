@@ -1,9 +1,21 @@
-import React, { Fragment } from 'react';
-import { Table, Button } from 'reactstrap';
+import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { getActivity } from '../../actions/activity'
+import Spinner from '../layout/Spinner';
+import { connect } from 'react-redux';
+import moment from 'moment';
+import { Table } from 'reactstrap';
 
-const ActivityDetail = () => {
+const ActivityDetail = ({
+  getActivity,
+  activityProp: { loading, activity },
+  match
+}) => {
+  useEffect(() => {
+    getActivity(match.params.id);
+  }, [getActivity]);
+
   const nombre = 'Desafíos a partir de la crisis sanitaria en Osorno';
   const inicio = '22/08/2019';
   const termino = '23/08/2019';
@@ -15,50 +27,77 @@ const ActivityDetail = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>{nombre}</title>
+        <title>Actividad</title>
+      </Helmet>
+      { activity === null || loading ? <Spinner /> : <Fragment>
+        <Helmet>
+        <title>{activity.name}</title>
       </Helmet>
       <div class='row'>
-        <div class='col col-8'>
-          <h1 className='large text-primary'>{nombre}</h1>
-          <p className='lead'>
-            <i className='fas fa-map-marker' /> Unidad: {unidad}
-          </p>
-        </div>
-        <div class='col col-4'>
-          <Link to='/add-visitor' className='btn btn-primary'>
-            Agregar Visitante a esta Actividad
-          </Link>
-        </div>
+      <div class='col col-8'>
+        <h1 className='large text-primary'>{activity.name}</h1>
+        <p className='lead'>
+          <i className='fas fa-map-marker' /> Unidad: {activity.unit}
+        </p>
       </div>
-
-      <div className='profile-grid my-1'>
-        <div>
-          <p>
-            <strong>Fecha de Inicio: </strong> {inicio}
-          </p>
-          <p>
-            <strong>Fecha de Término: </strong> {termino}
-          </p>
-          <p>
-            <strong>Fecha de Creación: </strong> {creada}
-          </p>
-          <p>
-            <strong>Fecha de Última Modificación: </strong> {modificada}
-          </p>
-          <p>
-            <strong>Estado: </strong> {estado}
-          </p>
-        </div>
+      <div class='col col-4'>
+        <Link to='/add-visitor' className='btn btn-primary'>
+          Agregar Visitante a esta Actividad
+        </Link>
       </div>
+    </div>
 
-      <Link to='/activities' className='btn btn-light'>
-        Volver a Actividades
-      </Link>
-      <Link to='/edit-activity' className='btn btn-light'>
-        Editar Activitdad
-      </Link>
+    <Table>
+        <thead>
+          <tr>
+            <th>Campo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Fecha de Inicio:</th>
+            <td>{moment(activity.date_start).format("DD/MM/YYYY")}</td>
+          </tr>
+          <tr>
+            <th scope="row">Fecha de Término:</th>
+            <td>{moment(activity.date_end).format("DD/MM/YYYY")}</td>
+          </tr>
+          <tr>
+            <th scope="row">Fecha de Creación:</th>
+            <td>{moment(activity.date_created).format("DD/MM/YYYY")}</td>
+          </tr>
+          <tr>
+            <th scope="row">Fecha de Última Modificación: </th>
+            <td>{moment(activity.date_modified).format("DD/MM/YYYY")}</td>
+          </tr>
+          <tr>
+            <th scope="row">Estado</th>
+            <td>{activity.state}</td>
+          </tr>
+          <tr>
+            <th scope="row">Descripcion</th>
+            <td>{activity.description}</td>
+          </tr>
+        </tbody>
+      </Table>
+
+    <Link to='/activities' className='btn btn-light'>
+      Volver a Actividades
+    </Link>
+    <Link to='/edit-activity' className='btn btn-light'>
+      Editar Activitdad
+    </Link> </Fragment>
+    }
     </Fragment>
   );
 };
 
-export default ActivityDetail;
+const mapStateToProps = state => ({
+  activityProp: state.activity
+})
+
+export default connect(
+  mapStateToProps,
+  { getActivity }
+)(ActivityDetail);

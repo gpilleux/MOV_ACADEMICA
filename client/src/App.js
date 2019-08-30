@@ -81,7 +81,7 @@ const App = () => {
 
               <Route exact path='/loqllevamos' component={Dashboard} />
               <Route exact path='/activities' component={Activities} />
-              <Route exact path='/activity-detail' component={ActivityDetail} />
+              <Route path='/activity-detail/:id' component={ActivityDetail} />
               <Route exact path='/create-activity' component={AddActivity} />
               <Route exact path='/create-visitor' component={CreateVisitor} />
               <Route exact path='/add-visitor' component={AddVisit} />

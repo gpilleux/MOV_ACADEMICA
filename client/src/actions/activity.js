@@ -13,7 +13,7 @@ import {
 // Get Activities
 export const getActivities = () => async dispatch => {
   try {
-    const res = await axios.get('api/activites');
+    const res = await axios.get('/api/activity/');
 
     dispatch({
       type: GET_ACTIVITIES,

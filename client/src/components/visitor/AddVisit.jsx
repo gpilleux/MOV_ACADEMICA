@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import StepWizard from 'react-step-wizard';
-import {Container, Row, Col, Form, Button, FormGroup, Input, Label, FormText, CustomInput} from 'reactstrap';
+import {Container, Row, Col, Form, Button, FormGroup, Input, FormText, CustomInput} from 'reactstrap';
 import CreateVisitor from './CreateVisitor';
 import { Helmet } from 'react-helmet';
 
