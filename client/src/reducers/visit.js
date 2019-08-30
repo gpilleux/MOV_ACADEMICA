@@ -1,6 +1,8 @@
 import {
-  ADD_VISITOR_TO_VISIT,
-  DELETE_VISITOR_IN_VISIT,
+  ADD_VISIT,
+  GET_VISIT,
+  UPDATE_VISIT,
+  DELETE_VISIT,
   VISIT_ERROR
 } from '../actions/types';
 
@@ -15,23 +17,38 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case ADD_VISITOR_TO_VISIT:
+    case ADD_VISIT:
       return {
         ...state,
+        visits: [payload, ...state.visits],
+        loading: false
+      };
+    case GET_VISIT:
+      return {
+        ...state,
+        visits: [payload, ...state.visits],
         visit: payload,
         loading: false
       };
-    case DELETE_VISITOR_IN_VISIT:
+    case UPDATE_VISIT:
       return {
         ...state,
-        visit: payload,
+        visits: state.visits.map(visit => visit._id == payload.id ? payload : visit),
+        loading: false
+      };
+    case DELETE_VISIT:
+      return {
+        ...state,
+        visits: state.visits.filter(visit => visit._id !== payload),
         loading: false
       };
     case VISIT_ERROR:
       return {
         ...state,
-        visit: payload,
+        error: payload,
         loading: false
       }
+    default:
+      return state;
     }
   }
