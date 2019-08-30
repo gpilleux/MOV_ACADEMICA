@@ -8,7 +8,8 @@ import {
   VISIT_ERROR
 } from './types';
 
-export const addVisit = (formData) => async dispatch => {
+// Add Visitor to Activity
+export const addVisit = formData => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -21,24 +22,23 @@ export const addVisit = (formData) => async dispatch => {
     dispatch({
       type: ADD_VISITOR_TO_VISIT,
       payload: res.data
-    })
+    });
   } catch (err) {
-
     const errors = err.response.data.errors;
 
-    if(error) {
+    if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
 
     dispatch({
       type: VISIT_ERROR,
-      payload: {msg: err.response.statusText, status: err.response.status}
-    })
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
   }
-}
+};
 
 // visitor id in formData
-export const deleteVisit = (formData,id) => async dispatch => {
+export const deleteVisit = (formData, id) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -50,26 +50,11 @@ export const deleteVisit = (formData,id) => async dispatch => {
     dispatch({
       type: DELETE_VISITOR_IN_VISIT,
       payload: res.data
-    })
+    });
   } catch (err) {
     dispatch({
       type: VISIT_ERROR,
-      payload: {msg: err.response.statusText, status: err.response.status}
-    })
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
   }
-}
-
-export const getVisits = (id) => async dispatch => {
-  try {
-    const res = await axios.get(`api/visit/${id}`);
-    dispatch({
-      type: GET_VISITORS_IN_VISIT,
-      payload: res.data
-    })
-  } catch (err) {
-    dispatch({
-      type: VISIT_ERROR,
-      payload: {msg: err.response.statusText, status: err.response.status}
-    })
-  }
-}
+};
