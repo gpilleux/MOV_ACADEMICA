@@ -116,14 +116,17 @@ router.delete('/:activity_id', async (req, res) => {
 });
 
 // @route   GET api/activity/visitors/:activity_id
-// @desc    Get all Visitors from a unique Activity
+// @desc    Get all Visitors from a specific Activity
 // @access  Public
 router.get('/visitors/:activity_id', async (req, res) => {
   try {
-    const visitors = await Visit.find({
+    const visits = await Visit.find({
       activity: req.params.activity_id
-    }).populate('visitor', ['name']);
-    res.json(profiles);
+    })
+      .populate('visitor', ['name', 'nationality', 'contact'])
+      .populate('activity', ['name', 'description']);
+
+    res.json(visits);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
