@@ -60,7 +60,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to='/dashboard/' tag={Link}>
+        <NavLink to='/all-visitors/' tag={Link}>
           <i className='fas fa-user' />
           Visitantes
         </NavLink>
