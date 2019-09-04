@@ -100,13 +100,66 @@ router.get('/:activity_id', async (req, res) => {
   }
 });
 
+// @route   POST api/activity/
+// @desc    Update an Activity
+// @access  Private
+router.post('/:activity_id', async (req, res) => {
+  const {
+    name,
+    date_start,
+    date_end,
+    description,
+    unit,
+    activity_type,
+    state,
+    date_created,
+    last_modified
+  } = req.body;
+
+  // Build Activity object
+  const activityFields = {};
+  if (name) activityFields.name = name;
+  if (date_start) activityFields.date_start = date_start;
+  if (date_end) activityFields.date_end = date_end;
+  if (description) activityFields.description = description;
+  if (unit) activityFields.unit = unit;
+  if (activity_type) activityFields.activity_type = activity_type;
+  if (state) activityFields.state = state;
+  if (date_created) activityFields.date_created = date_created;
+  if (last_modified) activityFields.last_modified = last_modified;
+
+  //console.log(activityFields);
+
+  try {
+    let activity = await Activity.findOne({ _id: req.params.activity_id });
+
+    if (activity) {
+      // Update
+      activity = await Activity.findOneAndUpdate(
+        { _id: req.params.activity_id },
+        { $set: activityFields },
+        { new: true }
+      );
+
+      //await activity.save();
+
+      return res.json(activity);
+    } else {
+      return res.json({ error: 'Actividad inexistente' });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   DELETE api/activity/:activity_id
 // @desc    Delete Activity by ID
 // @access  Private
 router.delete('/:activity_id', async (req, res) => {
   try {
     // Delete Activity
-    await Activity.findOneAndRemove({ _id: req.params.activity_id });
+    await Activity.findOneAndRemove({ _id: req.params.id });
 
     res.json({ msg: 'Actividad Eliminada' });
   } catch (err) {

@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     last_modified
   } = req.body;
 
-  // Build Activity object
+  // Build Visitor object
   const visitorFields = {};
   if (name) visitorFields.name = name;
   if (gender) visitorFields.gender = gender;
@@ -75,7 +75,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   GET api/activity/:visitor_id
+// @route   GET api/visitor/:visitor_id
 // @desc    Get Visitor by ID
 // @access  Public
 router.get('/:visitor_id', async (req, res) => {
@@ -96,8 +96,55 @@ router.get('/:visitor_id', async (req, res) => {
   }
 });
 
+// @route   POST api/visitor/:visitor_id
+// @desc    Update Visitor
+// @access  Private
+router.post('/:visitor_id', async (req, res) => {
+  const {
+    name,
+    gender,
+    born_date,
+    contact,
+    nacionality,
+    date_created,
+    last_modified
+  } = req.body;
+
+  // Build Visitor object
+  const visitorFields = {};
+  if (name) visitorFields.name = name;
+  if (gender) visitorFields.gender = gender;
+  if (born_date) visitorFields.born_date = born_date;
+  if (contact) visitorFields.contact = contact;
+  if (nacionality) visitorFields.nacionality = nacionality;
+
+  //console.log(visitorFields);
+
+  try {
+    let visitor = await Visitor.findOne({ _id: req.params.visitor_id });
+
+    if (visitor) {
+      // Update
+      visitor = await Visitor.findOneAndUpdate(
+        { _id: req.params.visitor_id },
+        { $set: visitorFields },
+        { new: true }
+      );
+
+      //await visitor.save();
+
+      return res.json(visitor);
+    } else {
+      return res.json({ error: 'Visitante inexistente' });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   DELETE api/visitor/:visitor_id
-// @desc    Delete Activity by ID
+// @desc    Delete Visitor by ID
 // @access  Private
 router.delete('/:visitor_id', async (req, res) => {
   try {
