@@ -96,6 +96,25 @@ router.get('/:visit_id', async (req, res) => {
   }
 });
 
+// @route   GET api/visitor/:visitor_id
+// @desc    Get All Visits from visitor_id
+// @access  Public
+router.get('/visitor/:visitor_id', async (req, res) => {
+  try {
+    const visits = await Visit.find({
+      visitor: req.params.visitor_id
+    }).populate('activity', ['name']);
+
+    res.json(visits);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'Visit not found' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route   DELETE api/visit/:visit_id
 // @desc    Delete Visit by ID
 // @access  Private

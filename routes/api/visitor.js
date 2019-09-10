@@ -118,8 +118,6 @@ router.post('/:visitor_id', async (req, res) => {
   if (contact) visitorFields.contact = contact;
   if (nacionality) visitorFields.nacionality = nacionality;
 
-  //console.log(visitorFields);
-
   try {
     let visitor = await Visitor.findOne({ _id: req.params.visitor_id });
 
@@ -137,6 +135,39 @@ router.post('/:visitor_id', async (req, res) => {
     } else {
       return res.json({ error: 'Visitante inexistente' });
     }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/visitor/:activity_id
+// @desc    Get all Visitors from Activity_id
+// @access  Public
+router.get('/fromActivity/:activity_id', async (req, res) => {
+  try {
+    const visit = await Visit.find({
+      activity: req.params.activity_id
+    }).populate('visitor', ['name']);
+    //console.log(visit);
+
+    //let visitors = await Visitor.find({ _id: visit.map(v => v.visitor) });
+
+    res.json(visit);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   GET api/visitor/:activity_id
+// @desc    Get all Visits from Activity_id
+// @access  Public
+router.get('/visits/:activity_id', async (req, res) => {
+  try {
+    const visits = await Visit.find({ activity: req.params.activity_id });
+
+    res.json(visits);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

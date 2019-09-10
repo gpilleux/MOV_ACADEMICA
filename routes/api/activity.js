@@ -71,7 +71,7 @@ router.post('/', async (req, res) => {
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const activities = await Activity.find();
+    const activities = await Activity.find().sort({ date_created: -1 });
     res.json(activities);
   } catch (err) {
     console.error(err.message);
