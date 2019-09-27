@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const visitors = await Visitor.find();
+    const visitors = await Visitor.find().sort({ date_created: -1 });
     res.json(visitors);
   } catch (err) {
     console.error(err.message);

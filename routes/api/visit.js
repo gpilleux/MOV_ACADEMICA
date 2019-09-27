@@ -73,7 +73,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   GET api/visitor/:visit_id
+// @route   GET api/visit/:visit_id
 // @desc    Get Visit by ID
 // @access  Public
 router.get('/:visit_id', async (req, res) => {
@@ -111,6 +111,61 @@ router.get('/visitor/:visitor_id', async (req, res) => {
     if (err.kind == 'ObjectId') {
       return res.status(400).json({ msg: 'Visit not found' });
     }
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   PUT api/visit/:visitor_id
+// @desc    Update Visit
+// @access  Private
+router.put('/:visit_id', async (req, res) => {
+  const {
+    activity,
+    visitor,
+    origin_institution,
+    patrocinador,
+    finance_type,
+    activity_type,
+    visit_rol,
+    degree_level,
+    expositor,
+    attended,
+    date_created,
+    last_modified
+  } = req.body;
+
+  // Build Visitor object
+  const visitFields = {};
+  if (activity) visitFields.activity = activity;
+  if (visitor) visitFields.visitor = visitor;
+  if (origin_institution) visitFields.origin_institution = origin_institution;
+  if (patrocinador) visitFields.patrocinador = patrocinador;
+  if (activity_type) visitFields.activity_type = activity_type;
+  if (visit_rol) visitFields.visit_rol = visit_rol;
+  if (degree_level) visitFields.degree_level = degree_level;
+  if (expositor) visitFields.expositor = expositor;
+  if (finance_type) visitFields.finance_type = finance_type;
+  if (attended) visitFields.attended = attended;
+
+  try {
+    let visit = await Visit.findOne({ _id: req.params.visit_id });
+
+    if (visit) {
+      // Update
+      visit = await Visit.findOneAndUpdate(
+        { _id: req.params.visit_id },
+        { $set: visitFields },
+        { new: true }
+      );
+
+      //await visit.save();
+
+      return res.json(visit);
+    } else {
+      return res.json({ error: 'Visita inexistente' });
+    }
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
